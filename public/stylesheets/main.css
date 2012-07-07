@@ -1,0 +1,204 @@
+/*!
+ * Fontact
+ *
+ * File: main.css
+ * Created: 4:09 PM 6/22/2012
+ * Author: Clive Ayonye (@CliveUA)
+ */
+
+/*  General
+    ================================================== */
+html {
+  overflow-y: scroll;
+}
+body {
+  font-family: "Lucida Grande", "Trebuchet MS", "Lucida Sans Unicode", sans-serif;
+  color: #222222;
+}
+a:hover {
+  text-decoration: none;
+}
+
+/*  Topbar
+    ================================================== */
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  margin-bottom: 0;
+}
+.topbar {
+  background: #2D2D2D url(../images/header_bg.png) repeat-x;
+  height: 54px;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.logo {
+  display: block;
+  margin-top: 13px;
+}
+.search-box {
+  background: #969696;
+  padding: 3px;
+  border-radius: 3px;
+  margin: 11px 0 0 100px;
+}
+.search-box > input {
+  width: 410px;
+  margin: 0;
+  padding: 3px;
+  border: 1px solid #777;
+  font-family: "Lucida Grande", "Trebuchet MS", "Lucida Sans Unicode", sans-serif;
+}
+
+.ui-button {
+  font-family: Arial, sans-serif;
+  color: white;
+  display: block;
+
+  background-color: #4a8cf6;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#4D90FE), to(#4787EE));
+  background-image: -webkit-linear-gradient(top, #4D90FE, #4787EE);
+  background-image:    -moz-linear-gradient(top, #4D90FE, #4787EE);
+  background-image:      -o-linear-gradient(top, #4D90FE, #4787EE);
+  background-image:         linear-gradient(to bottom, #4D90FE, #4787EE);
+}
+.ui-button:hover {
+  color: white;
+}
+.add-contact .ui-button {
+  float: right;
+  font-size: 18px;
+  font-weight: bold;
+  height: 60px;
+  padding: 0 25px;
+  border-radius: 0 0 4px 4px;
+  text-shadow: 0 1px 0 #0644aa;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+.add-contact .ui-button span {
+  font-size: 45px;
+  display: block;
+  margin: 5px 0 7px;
+  text-align: center;
+}
+
+.logo, .search-box {
+  float: left;
+}
+
+/*  Main
+    ================================================== */
+.main {
+  padding-top: 55px;
+}
+
+.contacts {
+  margin-top: 31px;
+  padding-top: 5px;
+  margin-right: -5px;
+  overflow: hidden;
+}
+.contact {
+  position: relative;
+  float: left;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  width: 220px;
+  text-align: center;
+
+  -webkit-box-shadow: 0px 0px 4px 0px #bebebe;
+          box-shadow: 0px 0px 4px 0px #bebebe;
+}
+.contact:hover, .new-contact {
+  -webkit-box-shadow: 0px 0px 5px 1px #2C77F5;
+          box-shadow: 0px 0px 5px 1px #2C77F5;
+}
+.contact .details {
+  padding: 10px;
+}
+.contact .details ul {
+  list-style-type: none;
+  margin: 0;
+}
+.contact .details ul li:nth-of-type(1) {
+  font-size: 15px;
+  font-weight: bold;
+}
+.contact .details ul li:nth-of-type(2) {
+  font-size: 13px;
+  color: #555;
+}
+.contact .details ul li:nth-of-type(3) {
+  font-size: 12px;
+  color: #9f9f9f;
+}
+.new-contact {
+  text-align: left;
+  margin-left: -260px;
+  opacity: 0;
+}
+.new-contact > div {
+  padding: 10px;
+  overflow: hidden;
+}
+.new-contact form > * {
+  width: 190px;
+}
+.new-contact h2 {
+  font-size: 20px;
+  line-height: normal;
+}
+.new-contact form {
+  margin-bottom: 10px;
+}
+.new-contact:hover {
+  cursor: default;
+}
+.save-contact {
+  font-weight: bold;
+  font-family: inherit;
+  float: left;
+  padding: 5px 20px;
+  margin: 0 8px 5px 0;
+  border-radius: 4px;
+}
+.no-contacts {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -155px;
+  margin-top: -19px;
+}
+.no-contacts span {
+  font-size: 30px;
+  font-weight: bold;
+  color: #ccc;
+}
+
+/*  Icons
+    ================================================== */
+.operations {
+  text-align: left;
+  position: absolute;
+  padding: 2px;
+  padding-bottom: 0;
+  top: 1px;
+  right: 5px;
+  display: none;
+}
+.contact:hover .operations {
+  display: block;
+}
+.operations .btn {
+  padding: 2px 5px 0;
+}
+
+.btn-toolbar {
+  margin: 0;
+}

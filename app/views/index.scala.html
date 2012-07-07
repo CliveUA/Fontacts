@@ -1,0 +1,88 @@
+@()(implicit request: RequestHeader)
+
+@main {
+  <script type="text/x-handlebars">
+    {{#view Fontacts.TopBar}}
+      <header>
+        <div class="topbar">
+          <div class="container">
+            <a href="" class="logo"><img src="@routes.Assets.at("images/logo.png")" alt=""></a>
+            <div class="search-box"><input type="text" placeholder="Search Contacts" {{action "do_filter" on="keyUp"}}></div>
+            <div class="add-contact"><a href="" {{action "add_new" on="click"}} class="ui-button"><span>+</span>Add New</a></div>
+          </div>
+        </div>
+      </header>
+    {{/view}}
+  </script>
+
+  <div class="main" role="main">
+    <div class="container">
+      <div class="contacts row">
+        <script type="text/x-handlebars">
+          {{#view Fontacts.NewContactView}}
+            <div class="contact new-contact">
+              <div>
+                <form action="" id="new-contact-form" enctype="multipart/form-data">
+                  <label for="">Full Name</label>
+                  <input type="text" name="fullname" {{bindAttr value="Fontacts.current_contact.fullname"}}>
+                  <label for="">Mobile Number</label>
+                  <input type="text" name="mobile" {{bindAttr value="Fontacts.current_contact.phone"}}>
+                  <label for="">Email</label>
+                  <input type="text" name="email" {{bindAttr value="Fontacts.current_contact.email"}}>
+                  <label for="">Image</label>
+                  <input type="file" name="photo">
+                </form>
+                <a href="#" {{action "save_contact" on="click"}} class="ui-button save-contact">Save</a>
+                <a href="#" {{action "close_entry_form" on="click"}} class="cancel btn">Cancel</a>
+              </div>
+            </div>
+          {{/view}}
+        </script>
+        <script type="text/x-handlebars">
+          {{#each Fontacts.contactController}}
+            {{#view Fontacts.ContactView contentBinding="this" id=this.id}}
+              <img {{bindAttr src="content.computeUrl"}} alt="" height="220">
+              <div class="details">
+                <ul>
+                  <li>{{content.fullname}}</li>
+                  <li>{{content.phone}}</li>
+                  <li>{{content.email}}</li>
+                </ul>
+              </div>
+              <div class="operations">
+                <div class="btn-toolbar">
+                  <div class="btn-group">
+                    <a href="#" class="btn" title="edit" {{action "edit"}}><i class="icon-pencil"></i></a>
+                    <a href="#" class="btn" title="delete" {{action "delete"}}><i class="icon-remove"></i></a>
+                  </div>
+                </div>
+              </div>
+            {{/view}}
+          {{/each}}
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/x-handlebars">
+    {{#if Fontacts.contactController.isEmpty}}
+      <div class="no-contacts">
+        <span>You have no contacts.</span>
+      </div>
+    {{/if}}
+  </script>
+
+
+  @helper.javascriptRouter("jsRoutes")(
+    routes.javascript.Application.add,
+    routes.javascript.Application.edit,
+    routes.javascript.Application.delete,
+    routes.javascript.Application.contact_photo,
+    routes.javascript.Application.all
+  )
+
+  <script type="text/javascript" src="@routes.Assets.at("javascripts/ember.min.js")"></script>
+  <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.form.js")"></script>
+  <script type="text/javascript" src="@routes.Assets.at("javascripts/application.js")"></script>
+
+}

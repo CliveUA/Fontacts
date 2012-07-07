@@ -1,4 +1,11 @@
-This is your new Play 2.0 application
+Introduction
 =====================================
+Fontacts is a simple application for managing your contacts, it covers the techniques and design 
+fundamentals required to create modern web applications. The application looks at the fundamentals 
+of building web applications using the following technologies:
 
-This file will be packaged with your application, when using `play dist`.
+Play Framework (An MVC framework for building web applications in Scala and Java)
+MongoDB (A NoSQL Database system)
+Salat (Simple Serialization with MongoDB and Scala)
+EmberJS (A javascirpt framework)
+And of course Html, Css, and the ubiquitous JQuery.

@@ -1,9 +1,8 @@
 Introduction
 =====================================
 
-Fontacts is a simple application for managing your contacts, it covers the techniques and design
-fundamentals required to create modern web applications. The application looks at the fundamentals
-of building web applications using the following technologies:
+Fontacts is a simple application for managing your contacts, it covers the techniques and design fundamentals required to create modern web applications. 
+The application looks at the fundamentals of building web applications using the following technologies:
 
 - Play Framework (An MVC framework for building web applications in Scala and Java)
 

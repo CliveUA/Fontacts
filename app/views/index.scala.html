@@ -1,4 +1,4 @@
-@()(implicit request: RequestHeader)
+@(contacts: Seq[Contact])(implicit request: RequestHeader)
 
 @main {
   <script type="text/x-handlebars">
@@ -38,6 +38,27 @@
             </div>
           {{/view}}
         </script>
+
+        @*contacts.map { contact =>
+          <div id="@contact._id" class="contact temp">
+            <img src="@routes.Application.contact_photo(contact._id.toString, contact.imageName.get)" height="220" alt="">
+            <div class="details">
+              <ul>
+                <li>@contact.fullName</li>
+                <li>@contact.phone</li>
+                <li>@contact.email</li>
+              </ul>
+            </div>
+            <div class="operations">
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <a href="" class="btn" title="edit"><i class="icon-pencil"></i></a>
+                  <a href="" class="btn" title="delete"><i class="icon-remove"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        }*@
         <script type="text/x-handlebars">
           {{#each Fontacts.contactController}}
             {{#view Fontacts.ContactView contentBinding="this" id=this.id}}

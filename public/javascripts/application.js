@@ -50,6 +50,7 @@ Fontacts.contactController = Em.ArrayController.create({
         var contacts = result.contacts.map(function(contact) {
           return Fontacts.Contact.create(contact);
         });
+        //$('.contacts .temp').hide().remove();
         self.set('content', contacts);
         self.set('main_content', contacts);
       }

@@ -5,6 +5,7 @@ import com.mongodb.casbah.Imports.{ObjectId, MongoDBObject}
 import java.io.File
 
 import models.Contact
+import interactors._
 
 import play.api._
 import play.api.mvc._
@@ -15,7 +16,7 @@ import play.api.libs.json._
 import play.api.libs.json.Json._
 import play.api.libs.json.Json.{toJson => TJ}
 
-object Application extends Controller {
+object Application extends Controller with ContactInteractor {
 
   val contactForm = Form(
     mapping(
@@ -26,13 +27,14 @@ object Application extends Controller {
     ((contact: Contact) => Some((contact.fullName, contact.phone, contact.email)))
 
     verifying("Invalid phone number", contact => {
-      val phoneMatcher = "^(234|\\+234|0)[0-9]{10}".r.pattern
-      phoneMatcher.matcher(contact.phone).matches
+      isPhoneNumber(contact.phone)
     })
   )
 
   def index = Action { implicit request =>
-    Ok(views.html.index())
+    val contacts = Contact.all.reverse
+
+    Ok(views.html.index(contacts))
   }
 
   def all = Action {
@@ -70,13 +72,8 @@ object Application extends Controller {
           )
         } else {
 
-          // retrieve and save the uploaded photo.
-          val photoName = request.body.file("photo").map { photo =>
-            val filename = generateFilename + fileExtension(photo.filename)
-            photo.ref.moveTo(new File("/data/contacts/photos", filename))
-
-            filename
-          }
+          // upload the contact photo and retrieve its name
+          val photoName = request.body.file("photo").map { photo => uploadPhoto(photo) }
 
           // add the contact to the database.
           Contact.create(
@@ -163,9 +160,4 @@ object Application extends Controller {
     }.getOrElse(NotFound)
   }
 
-  // Generate random file names for contact photos
-  private def generateFilename = BigInt.probablePrime(128, scala.util.Random).toString
-
-  // Retrieve file extension
-  private def fileExtension(filename: String) = filename.substring(filename.lastIndexOf("."))
 }
